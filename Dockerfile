@@ -21,4 +21,4 @@ COPY . .
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
 # Jalankan perintah ini agar port dinamis dari Railway ($PORT) langsung terbaca
-CMD php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
+CMD touch /app/database/database.sqlite && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
